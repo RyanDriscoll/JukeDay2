@@ -4,15 +4,10 @@
 juke.controller('PlayerCtrl', function ($scope, $rootScope, PlayerFactory) {
 
 
+
   // main toggle
   $scope.toggle = function (song) {
-    if (PlayerFactory.isPlaying() && song === PlayerFactory.getCurrentSong()) {
-            PlayerFactory.pause();
-        } else if (!PlayerFactory.isPlaying() && song === PlayerFactory.getCurrentSong()) {
-            PlayerFactory.resume();
-        } else {
-            PlayerFactory.start(song);
-        }
+    PlayerFactory.toggle(song);
   };
 
   $scope.getCurrentSong = function() {
@@ -21,9 +16,11 @@ juke.controller('PlayerCtrl', function ($scope, $rootScope, PlayerFactory) {
 
   $scope.isPlaying = function() {
     return PlayerFactory.isPlaying();
-  }
+  };
 
-
+  $scope.getProgress = function() {
+    return PlayerFactory.getProgress() * 100;
+  };
   // outgoing events (to Album… or potentially other characters)
   $scope.next = () => PlayerFactory.next();
   $scope.prev = () => PlayerFactory.previous();
@@ -33,7 +30,7 @@ juke.controller('PlayerCtrl', function ($scope, $rootScope, PlayerFactory) {
   }
 
   $scope.handleProgressClick = function (evt) {
-    seek(evt.offsetX / evt.currentTarget.scrollWidth);
+    PlayerFactory.setProgress(evt.offsetX / evt.currentTarget.scrollWidth);
   };
 
 });

@@ -14,7 +14,7 @@ sidebar {
   top: 0;
   padding: 0 !important;
   background: #303030;
-  height: calc(100vh - 56px);
+  height: 100vh;
   width: inherit;
   overflow-y: auto;
   border-right: 2px solid #555; }
@@ -54,7 +54,12 @@ footer {
   footer .progress {
     cursor: pointer; }
   footer .progress-bar {
+    background-color: #00bc8c;
     transition: none !important; }
 
 .album img {
   height: 300px; }
+
+.progress-bar {
+
+}
